@@ -19,12 +19,13 @@ class QuotePagerAdapter(
                 .inflate(R.layout.item_quote, parent, false)
         )
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
-        holder.bind(quotes[position], isNameRevealed)
+        val actualPosition = position % quotes.size
+        holder.bind(quotes[actualPosition], isNameRevealed)
     }
 
     override fun getItemCount(): Int {
-        // 리스트의 사이즈 리턴
-        return quotes.size
+        // 무한 뷰페이저 구현을 위해 Int의 최대값으로 size 리턴
+        return Int.MAX_VALUE
     }
 
     class QuoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
